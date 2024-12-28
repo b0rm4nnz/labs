@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение задач на JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            border: 2px black solid;
+            padding: 40px;
+
+        }
+        .task {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Решение задач на JavaScript</h1>
+
+    <!-- Задание 1 -->
+    <div class="task">
+        <h2>Задание 1: Вычислить высоты треугольника</h2>
+        <label for="sideA">Сторона a:</label>
+        <input type="number" id="sideA" step="0.01">
+        <label for="sideB">Сторона b:</label>
+        <input type="number" id="sideB" step="0.01">
+        <label for="sideC">Сторона c:</label>
+        <input type="number" id="sideC" step="0.01">
+       
+        <button onclick="calculateTriangleHeights()">Вычислить</button>
+        <br/>
+        <br/>
+        <br/>
+        <button onclick="Showcode()">показать код</button>
+        <br/>
+        <br/>
+        <br/>
+        <div class="result" id="result1"></div>
+    </div>
+<hr/>
+    <!-- Задание 2 -->
+    <div class="task">
+        <h2>Задание 2: Напечатать числа в порядке убывания</h2>
+        <label for="numberX">Число X:</label>
+        <input type="number" id="numberX" step="0.01">
+        <button onclick="printNumbersInDescendingOrder()">
+            Вычислить</button>
+            <br/>
+            <br/>
+            <br/>
+            <button onclick="Showcode()">показать код</button>
+
+        <div class="result" id="result2"></div>
+    </div>
+
+    <script>
+        // Функция для вычисления высот треугольника
+
+        function Showcode(){
+
+        }
+        function calculateTriangleHeights() {
+            const a = parseFloat(document.getElementById('sideA').value);
+            const b = parseFloat(document.getElementById('sideB').value);
+            const c = parseFloat(document.getElementById('sideC').value);
+
+            if (a + b <= c || a + c <= b || b + c <= a) {
+                document.getElementById('result1').innerText = "Треугольник не существует";
+                return;
+            }
+
+            const p = (a + b + c) / 2;
+            const S = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+            const h_a = (2 * S) / a;
+            const h_b = (2 * S) / b;
+            const h_c = (2 * S) / c;
+
+            document.getElementById('result1').innerText = `Высоты: h_a = ${h_a.toFixed(2)}, h_b = ${h_b.toFixed(2)}, h_c = ${h_c.toFixed(2)}`;
+        }
+
+        // Функция для печати чисел в порядке убывания
+        function printNumbersInDescendingOrder() {
+            const X = parseFloat(document.getElementById('numberX').value);
+            const xSquared = X ** 2;
+            const sqrtAbsX = Math.sqrt(Math.abs(X));
+            const numbers = [xSquared, X, sqrtAbsX];
+            numbers.sort((a, b) => b - a);
+
+            document.getElementById('result2').innerText = `Числа в порядке убывания: ${numbers.join(', ')}`;
+        }
+    </script>
+</body>
+</html>
